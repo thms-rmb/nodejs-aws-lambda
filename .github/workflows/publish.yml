@@ -16,10 +16,14 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Runs in the `npm` environment: pair with required reviewers for an approval
+    # gate, and set the same environment name in the npm trusted-publisher config
+    # to bind OIDC publishing to this environment.
+    environment: npm
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           # Node 24 bundles npm >= 11.5.1 (currently 11.16), which trusted
           # publishing (OIDC) requires. The Node 22 line only ships npm 10, and
