@@ -1,6 +1,6 @@
 {
   "name": "@thms-rmb/nodejs-aws-lambda",
-  "version": "0.9.0",
+  "version": "0.9.0-0",
   "description": "Node.js port of the Perl AWS::Lambda custom-runtime client. Zero runtime dependencies, plain ESM.",
   "type": "module",
   "license": "MIT",
