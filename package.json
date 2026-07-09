@@ -22,6 +22,9 @@
   "bin": {
     "bootstrap": "bin/bootstrap"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "src",
     "bin",

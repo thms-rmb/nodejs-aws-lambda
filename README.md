@@ -137,6 +137,44 @@ them. Synchronous handlers (and any code that reads these before its first
 If you need a correct per-invocation `getCurrentContext()` under concurrency,
 `node:async_hooks`' `AsyncLocalStorage` is the zero-dependency way to add it.
 
+## Releasing
+
+**Versioning policy.** The `major.minor.patch` numbers mirror the upstream Perl
+[`AWS::Lambda`](https://metacpan.org/dist/AWS-Lambda) release this port tracks
+(currently `0.9.0`). Changes that are specific to this port and do **not**
+correspond to a new upstream release are published as **prereleases toward the
+next patch** — e.g. after `0.9.0`, port tweaks ship as `0.9.1-1`, `0.9.1-2`, …
+(a prerelease sorts *before* `0.9.1`, so it correctly reads as "on the way to
+the next version"). A clean `X.Y.Z` with no prerelease suffix is reserved for a
+release that faithfully matches upstream `X.Y.Z`.
+
+The publish workflow maps this to npm [dist-tags](https://docs.npmjs.com/cli/v10/commands/npm-dist-tag)
+automatically: a prerelease version (one containing a `-`) is published under
+`next`; a clean version is published under `latest`.
+
+**Cutting a release.** Version tags drive publishing — the
+[`publish` workflow](.github/workflows/publish.yml) runs on any `v*` tag push:
+
+```sh
+npm version 0.9.1-1 --no-git-tag-version   # or edit package.json by hand
+git commit -am "Release 0.9.1-1"
+git tag v0.9.1-1
+git push && git push --tag
+```
+
+The workflow verifies the tag matches `package.json`, runs the tests, and
+publishes. It uses npm **trusted publishing (OIDC)** — there is no `NPM_TOKEN`
+secret, and [provenance](https://docs.npmjs.com/generating-provenance-statements)
+is attached automatically.
+
+**One-time trusted-publishing setup** (on [npmjs.com](https://www.npmjs.com)):
+because the trusted-publisher setting lives under an existing package's
+settings, publish once manually to create the package —
+`npm publish` locally (this reads `publishConfig.access: public`) — then in the
+package's **Settings → Trusted Publisher** add a GitHub Actions publisher with
+repository `thms-rmb/nodejs-aws-lambda` and workflow filename `publish.yml`.
+Every subsequent release then flows through the tag-push workflow with no token.
+
 ## License
 
 MIT (matching the upstream Perl distribution by ICHINOSE Shogo).
