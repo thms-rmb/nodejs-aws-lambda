@@ -1,11 +1,19 @@
 {
-  "name": "nodejs-aws-lambda",
+  "name": "@thms-rmb/nodejs-aws-lambda",
   "version": "0.9.0",
   "description": "Node.js port of the Perl AWS::Lambda custom-runtime client. Zero runtime dependencies, plain ESM.",
   "type": "module",
   "license": "MIT",
   "engines": {
     "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thms-rmb/nodejs-aws-lambda.git"
+  },
+  "homepage": "https://github.com/thms-rmb/nodejs-aws-lambda#readme",
+  "bugs": {
+    "url": "https://github.com/thms-rmb/nodejs-aws-lambda/issues"
   },
   "main": "src/index.js",
   "exports": {

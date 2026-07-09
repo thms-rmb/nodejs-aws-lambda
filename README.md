@@ -22,7 +22,7 @@ the `bootstrap` entry point). The Perl `AWS::Lambda::PSGI` web adapter and the
 
 ```js
 // handler.js
-import { getCurrentContext } from 'nodejs-aws-lambda';
+import { getCurrentContext } from '@thms-rmb/nodejs-aws-lambda';
 
 export function handle(payload, context) {
   // context is a Context instance (also available via getCurrentContext()).
@@ -56,7 +56,7 @@ export function handle(payload, context) {
 reads the handler from `_HANDLER` (or its first CLI argument). Programmatically:
 
 ```js
-import { bootstrap, Bootstrap } from 'nodejs-aws-lambda';
+import { bootstrap, Bootstrap } from '@thms-rmb/nodejs-aws-lambda';
 
 await bootstrap('handler.handle');            // convenience
 // or, for full control:
