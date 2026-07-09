@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-aws-lambda",
+  "version": "0.9.0",
+  "description": "Node.js port of the Perl AWS::Lambda custom-runtime client. Zero runtime dependencies, plain ESM.",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "bin": {
+    "bootstrap": "bin/bootstrap"
+  },
+  "files": [
+    "src",
+    "bin",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "keywords": [
+    "aws",
+    "lambda",
+    "custom-runtime",
+    "provided",
+    "serverless"
+  ]
+}

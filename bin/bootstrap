@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+// AWS Lambda custom-runtime entry point.
+//
+// Lambda executes the file named `bootstrap` at the root of the deployment
+// package (or in a layer). This starts the Runtime API event loop. The handler
+// is read from the `_HANDLER` environment variable, or the first CLI argument
+// (which is what the container `CMD` provides), matching the Perl `bootstrap`.
+import { bootstrap } from '../src/index.js';
+
+bootstrap(process.argv[2]);
