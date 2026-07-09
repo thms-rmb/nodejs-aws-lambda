@@ -21,12 +21,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '22' # trusted publishing requires Node >= 22.14
+          # Node 24 bundles npm >= 11.5.1 (currently 11.16), which trusted
+          # publishing (OIDC) requires. The Node 22 line only ships npm 10, and
+          # self-upgrading npm in place corrupts its bundled `sigstore` dep that
+          # provenance generation needs — so use a clean bundled npm instead.
+          node-version: '24'
           registry-url: 'https://registry.npmjs.org'
-
-      # Trusted publishing (OIDC) requires npm >= 11.5.1; Node 22 bundles npm 10.
-      - name: Upgrade npm
-        run: npm install -g npm@latest
 
       - name: Run tests
         run: npm test
